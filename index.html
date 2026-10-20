@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="id" class="h-full">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Satya Bara Argayoen — Kartu Identitas Digital</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Satya Bara Argayoen - Portfolio & AI Tools</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,146 +21,720 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        dark: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                        },
+                        accent: {
+                            cyan: '#06b6d4',  // Cyan
+                            green: '#10b981', // Emerald
+                            blue: '#3b82f6',  // Blue
+                            purple: '#a855f7',// Purple
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1, boxShadow: '0 0 25px rgba(6, 182, 212, 0.6)' },
+                            '50%': { opacity: 0.7, boxShadow: '0 0 45px rgba(6, 182, 212, 0.9)' },
+                        }
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #090d16 0%, #0f172a 100%);
+            background-color: #0f172a;
         }
-        .card-shadow {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 35px rgba(59, 130, 246, 0.08);
+        
+        .cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #06b6d4;
         }
-        ::-webkit-scrollbar {
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tech-gradient-text {
+            background: linear-gradient(to right, #06b6d4, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, #06b6d4, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            pointer-events: none;
+        }
+
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 #06b6d4;
+            clip-path: inset(20% 0 60% 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: 2px 0 #10b981;
+            clip-path: inset(60% 0 10% 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: inset(40% 0 50% 0); transform: skew(0.5deg); }
+            20% { clip-path: inset(80% 0 5% 0); transform: skew(-0.5deg); }
+            40% { clip-path: inset(10% 0 80% 0); transform: skew(0.8deg); }
+            60% { clip-path: inset(60% 0 25% 0); transform: skew(-0.3deg); }
+            80% { clip-path: inset(25% 0 60% 0); transform: skew(0.4deg); }
+            100% { clip-path: inset(50% 0 30% 0); transform: skew(-0.2deg); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(25% 0 65% 0); transform: skew(-0.4deg); }
+            20% { clip-path: inset(70% 0 15% 0); transform: skew(0.6deg); }
+            40% { clip-path: inset(5% 0 85% 0); transform: skew(-0.2deg); }
+            60% { clip-path: inset(85% 0 5% 0); transform: skew(0.5deg); }
+            80% { clip-path: inset(45% 0 40% 0); transform: skew(-0.7deg); }
+            100% { clip-path: inset(15% 0 70% 0); transform: skew(0.3deg); }
+        }
+
+        /* Custom Scrollbar for Chat */
+        .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
-        ::-webkit-scrollbar-track {
+        .custom-scrollbar::-webkit-scrollbar-track {
             background: rgba(15, 23, 42, 0.6);
-            border-radius: 8px;
         }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(51, 65, 85, 0.8);
-            border-radius: 8px;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(6, 182, 212, 0.4);
+            border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(59, 130, 246, 0.5);
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 182, 212, 0.8);
         }
     </style>
 </head>
-<body class="h-full min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 text-slate-100 selection:bg-blue-500 selection:text-slate-950">
+<body class="text-slate-300 font-sans antialiased overflow-x-hidden selection:bg-cyan-500 selection:text-slate-900 relative">
 
-    <div class="w-full max-w-lg bg-slate-900/95 backdrop-blur-2xl border border-slate-800/90 rounded-3xl card-shadow p-6 sm:p-8 space-y-6 relative overflow-hidden">
-        
-        <!-- Decorative Glow Backgrounds -->
-        <div class="absolute -top-24 -right-24 w-52 h-52 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -left-24 w-52 h-52 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="flex flex-col items-center text-center space-y-4 relative z-10">
-            <div class="relative group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 rounded-2xl blur opacity-70 group-hover:opacity-100 transition duration-300"></div>
-                
-                <!-- Foto Profil -->
-                <div class="relative w-24 h-24 rounded-2xl bg-slate-950 border border-slate-700/80 shadow-inner overflow-hidden flex items-center justify-center">
-                    <img src="foto.jpg" alt="Satya Bara Argayoen" class="w-full h-full object-cover">
-                </div>
-
-                <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-slate-900 rounded-full shadow" title="Active"></span>
-            </div>
-
-            <!-- Name and Class -->
-            <div class="space-y-1.5">
-                <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center justify-center gap-1.5">
-                    Satya Bara Argayoen
-                    <svg class="w-5 h-5 text-blue-400 inline shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                </h1>
-                <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono font-medium">
-                    <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
-                    XII TKJ B &bull; Teknik Komputer & Jaringan
-                </div>
-            </div>
-        </div>
-
-        <div class="space-y-3 relative z-10">
-            <div class="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 px-1">
-                <i data-lucide="compass" class="w-4 h-4 text-amber-400"></i>
-                <span>Cita-Cita</span>
-            </div>
-            <div class="p-4 rounded-2xl bg-slate-800/40 border border-slate-800 space-y-2">
-                <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                    Menjadi seorang <span class="text-white font-medium">Network Engineer & IT Infrastructure Specialist</span> profesional yang andal, serta berkontribusi dalam pengembangan teknologi jaringan komputer modern.
-                </p>
-            </div>
-        </div>
-
-        <div class="space-y-3 relative z-10">
-            <div class="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 px-1">
-                <i data-lucide="heart" class="w-4 h-4 text-pink-400"></i>
-                <span>Hobi & Ketertarikan</span>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/40 flex flex-col items-center text-center gap-1.5 hover:border-blue-500/40 transition-all">
-                    <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400">
-                        <i data-lucide="bike" class="w-4 h-4"></i>
-                    </div>
-                    <span class="text-xs font-medium text-slate-200 font-mono">Touring Motor</span>
-                </div>
-
-                <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/40 flex flex-col items-center text-center gap-1.5 hover:border-blue-500/40 transition-all">
-                    <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400">
-                        <i data-lucide="wrench" class="w-4 h-4"></i>
-                    </div>
-                    <span class="text-xs font-medium text-slate-200 font-mono">Modif Motor Matic</span>
-                </div>
-
-                <div class="p-3 rounded-xl bg-slate-800/50 border border-slate-700/40 flex flex-col items-center text-center gap-1.5 hover:border-blue-500/40 transition-all">
-                    <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
-                        <i data-lucide="code-2" class="w-4 h-4"></i>
-                    </div>
-                    <span class="text-xs font-medium text-slate-200 font-mono">Eksplorasi Teknologi</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="space-y-3 relative z-10">
-            <div class="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 px-1">
-                <i data-lucide="briefcase" class="w-4 h-4 text-emerald-400"></i>
-                <span>Minat Dunia Kerja & Kuliah</span>
-            </div>
-            <div class="p-4 rounded-2xl bg-slate-800/40 border border-slate-800 space-y-3 text-xs sm:text-sm text-slate-300 font-light">
-                <div class="flex items-start gap-2.5">
-                    <i data-lucide="server" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
-                    <div>
-                        <strong class="text-white font-medium block mb-0.5">Dunia Kerja</strong>
-                        Tertarik berkarier sebagai Network Administrator, Server Engineer, maupun IT Infrastructure Specialist.
-                    </div>
-                </div>
-                <div class="flex items-start gap-2.5">
-                    <i data-lucide="book-open" class="w-4 h-4 text-indigo-400 mt-0.5 shrink-0"></i>
-                    <div>
-                        <strong class="text-white font-medium block mb-0.5">Kuliah</strong>
-                        Merencanakan lanjut studi ke Perguruan Tinggi mengambil jurusan Teknik Informatika, Sistem Informasi, atau Teknik Komputer.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="pt-2 text-center border-t border-slate-800/80 font-mono text-[11px] text-slate-500">
-            Satya Bara Argayoen &bull; XII TKJ B &bull; 2026
-        </div>
-
+    <div class="fixed inset-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-0 -left-4 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob"></div>
+        <div class="absolute top-0 -right-4 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-80 h-80 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-4000"></div>
     </div>
 
+    <nav class="fixed w-full top-0 z-50 glass-card border-b-0 border-slate-800/50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-base sm:text-lg md:text-xl font-mono font-bold text-white tracking-tighter hover:scale-105 transition-transform">
+                <span class="text-accent-cyan">&lt;</span>Satya Argayoen Bara<span class="text-accent-green">/&gt;</span>
+            </a>
+            <div class="hidden md:flex space-x-7 items-center">
+                <a href="#home" class="text-sm font-medium hover:text-accent-cyan transition-colors">Home</a>
+                <a href="#about" class="text-sm font-medium hover:text-accent-cyan transition-colors">About</a>
+                <a href="#skills" class="text-sm font-medium hover:text-accent-cyan transition-colors">Skills</a>
+                <a href="#projects" class="text-sm font-medium hover:text-accent-cyan transition-colors">Projects & Hobbies</a>
+                <a href="#contact" class="text-sm font-medium hover:text-accent-cyan transition-colors">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card absolute w-full flex-col p-4 space-y-4 shadow-xl border-t border-slate-700/50">
+            <a href="#home" class="block text-sm font-medium hover:text-accent-cyan transition-colors">Home</a>
+            <a href="#about" class="block text-sm font-medium hover:text-accent-cyan transition-colors">About</a>
+            <a href="#skills" class="block text-sm font-medium hover:text-accent-cyan transition-colors">Skills</a>
+            <a href="#projects" class="block text-sm font-medium hover:text-accent-cyan transition-colors">Projects & Hobbies</a>
+            <a href="#contact" class="block text-sm font-medium hover:text-accent-cyan transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+            
+            <!-- Left Text Content -->
+            <div class="w-full md:w-3/5 text-center md:text-left order-2 md:order-1">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-sm mb-6">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                    <span>Ready for Network & Code</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                    Halo, Saya <br><span class="glitch-text tech-gradient-text" data-text="Satya Bara Argayoen">Satya Bara Argayoen</span>
+                </h1>
+                <div class="text-lg sm:text-2xl font-mono text-slate-300 mb-6 h-10 flex items-center justify-center md:justify-start">
+                    <span id="typewriter" class="cursor font-semibold text-cyan-400"></span>
+                </div>
+                <p class="max-w-xl text-base sm:text-lg text-slate-400 leading-relaxed mb-8">
+                    Siswa SMK jurusan Teknik Komputer & Jaringan (TKJ). Menyukai konfigurasi sistem, eksplorasi hardware & Linux, serta menikmati hobi traveler dan backpacking.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-emerald-500 text-white font-medium hover:from-cyan-400 hover:to-emerald-400 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.7)] hover:-translate-y-1 flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open"></i> Lihat Proyek
+                    </a>
+                    <a href="#contact" class="px-6 py-3 rounded-xl glass-card text-slate-300 font-medium border border-slate-700 hover:border-cyan-400 hover:text-cyan-400 transition-all duration-300 hover:-translate-y-1 flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Hubungi Saya
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Profile Photo Container -->
+            <div class="w-full md:w-2/5 flex justify-center order-1 md:order-2">r
+                <div class="relative group">
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-emerald-400 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-glow"></div>
+                    
+                    <div class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden p-1 bg-slate-900 border-2 border-cyan-400/50">
+<!-- Contoh Foto Profil -->
+<img 
+    src="foto.jpg" 
+    alt="Satya Bara Argayoen" 
+    class=" h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
+>
+                        >
+                    </div>
+
+                    <!-- Floating Badges -->
+                    <div class="absolute -bottom-2 -left-2 glass-card px-3 py-1.5 rounded-lg border border-cyan-500/40 text-cyan-300 text-xs font-mono shadow-lg flex items-center gap-1.5">
+                        <i class="fa-solid fa-network-wired text-cyan-400"></i> TKJ Student
+                    </div>
+                    <div class="absolute top-4 -right-2 glass-card px-3 py-1.5 rounded-lg border border-emerald-500/40 text-emerald-300 text-xs font-mono shadow-lg flex items-center gap-1.5">
+                        <i class="fa-solid fa-compass text-emerald-400"></i> Traveler
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3"><span class="text-accent-cyan">/</span> Tentang Saya</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-emerald-400 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-5">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-700/80 hover:border-cyan-500/50 transition-colors">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl">
+                                <i class="fa-solid fa-id-card"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Biodata Singkat</h3>
+                                <p class="text-xs text-slate-400 font-mono">Personal Profile Details</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3.5 text-sm">
+                            <li class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-400">Nama Lengkap</span>
+                                <span class="font-medium text-white">Satya Bara Argayoen</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-400">Pendidikan</span>
+                                <span class="font-medium text-white">SMK (TKJ)</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-400">Kelas</span>
+                                <span class="font-medium text-cyan-400 font-mono">XII TKJ B</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-400">Sistem Operasi</span>
+                                <span class="font-medium text-white">Linux & Windows</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-slate-400">Fokus Minat</span>
+                                <span class="font-medium text-emerald-400">Networking & Traveler</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 space-y-4">
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Saya adalah seorang pelajar aktif di kelas <strong class="text-cyan-400">XII TKJ B</strong> dengan antusiasme tinggi pada dunia teknologi informasi dan jiwa traveler. Jurusan Teknik Komputer dan Jaringan membekali saya pemahaman mendalam tentang infrastruktur digital, mulai dari pengabelan, router Mikrotik, hingga instalasi server Linux.
+                    </p>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Di luar aktivitas sekolah, saya menyalurkan hobi perjalanan dan menjelajahi tempat-tempat baru sebagai seorang traveler. Bagi saya, kegiatan traveling mengajarkan ketahanan, perencanaan rute, wawasan baru, dan manajemen perjalanan yang matang.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <span class="px-3 py-1 rounded-lg text-xs font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">#ProblemSolver</span>
+                        <span class="px-3 py-1 rounded-lg text-xs font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">#MikrotikConfig</span>
+                        <span class="px-3 py-1 rounded-lg text-xs font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">#Traveler</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 px-6 bg-slate-900/60">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3"><span class="text-accent-cyan">#</span> Keahlian & Minat</h2>
+                <p class="text-slate-400 text-sm max-w-lg mx-auto">Kombinasi kemampuan teknis jaringan komputer TKJ dan hobi traveler.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Skill 1 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-700/70 hover:border-cyan-400 hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] transition-all">
+                        <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Jaringan & IP</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Memahami konsep OSI Model, IP Addressing (IPv4), Subnetting, crimping kabel UTP, dan topologi jaringan LAN/WLAN.
+                    </p>
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-cyan-400 h-full w-4/5 rounded-full"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-700/70 hover:border-blue-400 hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/20 border border-blue-400/50 flex items-center justify-center text-blue-400 mb-5 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.6)] transition-all">
+                        <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">MikroTik Router</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Konfigurasi dasar RouterBoard via Winbox, DHCP Server, Firewall Bandwidth Limiter, dan setup Hotspot voucher.
+                    </p>
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-blue-400 h-full w-3/4 rounded-full"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-700/70 hover:border-emerald-400 hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-400 mb-5 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(16,185,129,0.6)] transition-all">
+                        <i class="fa-solid fa-laptop text-3xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Hardware & Laptop</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Perbaikan laptop & PC, pemeliharaan hardware dasar, serta instalasi & penggunaan OS Linux / Windows.
+                    </p>
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-emerald-400 h-full w-4/5 rounded-full"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-700/70 hover:border-purple-400 hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/20 border border-purple-400/50 flex items-center justify-center text-purple-400 mb-5 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] transition-all">
+                        <i class="fa-solid fa-compass text-3xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Traveler & Exploration</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Manajemen perjalanan travel, navigasi rute, eksplorasi destinasi baru, budgeting perjalanan, serta adaptasi di berbagai lingkungan.
+                    </p>
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-purple-400 h-full w-5/6 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3"><span class="text-accent-cyan">&</span> Proyek & Galeri Hobi</h2>
+                <p class="text-slate-400 text-sm max-w-lg mx-auto">Gunakan filter tab di bawah untuk melihat dokumentasi proyek TKJ atau perjalanan traveler.</p>
+            </div>
+
+            <!-- Tab Navigation Bar -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button onclick="switchTab('all')" id="tab-all" class="project-tab px-5 py-2.5 rounded-xl text-xs md:text-sm font-medium font-mono transition-all duration-300 border border-cyan-400 bg-cyan-500/20 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                    <i class="fa-solid fa-layer-group"></i> Semua Proyek
+                </button>
+                <button onclick="switchTab('tkj')" id="tab-tkj" class="project-tab px-5 py-2.5 rounded-xl text-xs md:text-sm font-medium font-mono transition-all duration-300 border border-slate-700 glass-card text-slate-400 hover:text-white hover:border-cyan-500/50">
+                    <i class="fa-solid fa-network-wired"></i> Jaringan Mikrotik
+                </button>
+                <button onclick="switchTab('touring')" id="tab-touring" class="project-tab px-5 py-2.5 rounded-xl text-xs md:text-sm font-medium font-mono transition-all duration-300 border border-slate-700 glass-card text-slate-400 hover:text-white hover:border-cyan-500/50">
+                    <i class="fa-solid fa-compass"></i> Traveler & Travel
+                </button>
+                <button onclick="switchTab('server')" id="tab-server" class="project-tab px-5 py-2.5 rounded-xl text-xs md:text-sm font-medium font-mono transition-all duration-300 border border-slate-700 glass-card text-slate-400 hover:text-white hover:border-cyan-500/50">
+                    <i class="fa-solid fa-server"></i> Linux Server
+                </button>
+            </div>
+
+            <!-- Slider Container -->
+            <div class="relative max-w-4xl mx-auto glass-card p-6 md:p-8 rounded-3xl border border-slate-700/80 shadow-2xl overflow-hidden">
+                
+                <!-- Slide Item 0: Mikrotik -->
+                <div id="project-slide-0" class="project-slide flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-full md:w-1/2 h-64 rounded-2xl overflow-hidden bg-slate-900 border border-slate-700 relative group">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f172a/06b6d4?text=Network+Setup';" alt="Simulasi Jaringan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-cyan-500/30 border border-cyan-400/50 text-cyan-300 text-xs font-mono px-3 py-1 rounded-full backdrop-blur-md">
+                            TKJ Config
+                        </span>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4 text-left">
+                        <h3 class="text-2xl font-bold text-white">Simulasi Jaringan MikroTik</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Perancangan topologi jaringan kantor skala kecil menggunakan Cisco Packet Tracer dan konfigurasi langsung pada RouterBoard RB951. Mencakup DHCP, Firewall Filtering, dan Bandwidth Limiter.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-cyan-400 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700">#Winbox</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700">#PacketTracer</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700">#VLAN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide Item 1: Traveler -->
+                <div id="project-slide-1" class="project-slide hidden flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-full md:w-1/2 h-64 rounded-2xl overflow-hidden bg-slate-900 border border-slate-700 relative group">
+                        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f172a/10b981?text=Eksplorasi+Dieng';" alt="Eksplorasi Jakarta Dieng" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-emerald-500/30 border border-emerald-400/50 text-emerald-300 text-xs font-mono px-3 py-1 rounded-full backdrop-blur-md">
+                            Traveler & Exploration
+                        </span>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4 text-left">
+                        <h3 class="text-2xl font-bold text-white">Eksplorasi Jakarta - Dieng</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Pengalaman perjalanan eksplorasi dari Jakarta ke Negeri di Atas Awan (Dieng) untuk menikmati keindahan alam, menguji ketahanan fisik, serta melatih kemampuan manajemen perjalanan dan navigasi rute.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-emerald-400 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700">#JakartaDieng</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700">#Traveler</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700">#Backpacking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide Item 2: Server -->
+                <div id="project-slide-2" class="project-slide hidden flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-full md:w-1/2 h-64 rounded-2xl overflow-hidden bg-slate-900 border border-slate-700 relative group">
+                        <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=800&q=80" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f172a/3b82f6?text=Linux+Lab';" alt="Linux Server" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-blue-500/30 border border-blue-400/50 text-blue-300 text-xs font-mono px-3 py-1 rounded-full backdrop-blur-md">
+                            Linux Lab
+                        </span>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4 text-left">
+                        <h3 class="text-2xl font-bold text-white">Server Lokal & Portofolio</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Eksperimen deployment web server berbasis Linux Debian pada mesin lokal untuk latihan manajemen domain lokal, Nginx web hosting, SSH remote server, dan portofolio mandiri.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono text-blue-400 pt-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700">#DebianLinux</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700">#Nginx</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700">#Apache</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Nav Buttons -->
+                <div class="flex justify-between items-center mt-8 pt-4 border-t border-slate-800">
+                    <button onclick="prevProject()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-400 flex items-center justify-center transition-colors border border-slate-700 hover:border-cyan-500/50">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <!-- Indicators -->
+                    <div class="flex gap-2">
+                        <button id="dot-0" onclick="goToProject(0)" class="h-3 rounded-full bg-cyan-400 transition-all duration-300 shadow-[0_0_10px_rgba(6,182,212,0.8)] w-8"></button>
+                        <button id="dot-1" onclick="goToProject(1)" class="w-3 h-3 rounded-full bg-slate-700 hover:bg-slate-500 transition-all duration-300"></button>
+                        <button id="dot-2" onclick="goToProject(2)" class="w-3 h-3 rounded-full bg-slate-700 hover:bg-slate-500 transition-all duration-300"></button>
+                    </div>
+                    <button onclick="nextProject()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-400 flex items-center justify-center transition-colors border border-slate-700 hover:border-cyan-500/50">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 px-6 bg-slate-900/90 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3"><span class="text-accent-cyan">@</span> Kontak & Media Sosial</h2>
+                <p class="text-slate-400 text-sm">Punya pertanyaan, ajakan kolaborasi proyek TKJ, atau sekadar diskusi motor & travel? Mari terhubung!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Informasi Kontak -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-700 space-y-4">
+                    <h3 class="text-lg font-bold text-white mb-2">Informasi Kontak</h3>
+                    <div class="flex items-center gap-3 text-slate-300 text-sm">
+                        <div class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400">Status</p>
+                            <p class="font-medium">Siswa XII TKJ B</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 text-slate-300 text-sm">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400">Lokasi</p>
+                            <p class="font-medium">Indonesia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media Sosial Badge -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-700">
+                    <h3 class="text-lg font-bold text-white mb-1">Daftar Akun Media Sosial</h3>
+                    <p class="text-xs text-slate-400 mb-4">Username & nama pengguna:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-800/60 text-slate-200 text-xs font-mono border border-slate-700/50">
+                            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400">
+                                <i class="fa-brands fa-github text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400">GitHub</p>
+                                <p class="font-semibold text-white">satyabara</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-800/60 text-slate-200 text-xs font-mono border border-slate-700/50">
+                            <div class="w-8 h-8 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400">
+                                <i class="fa-brands fa-instagram text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400">Instagram</p>
+                                <p class="font-semibold text-white">@satyabara</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-800/60 text-slate-200 text-xs font-mono border border-slate-700/50">
+                            <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                                <i class="fa-brands fa-tiktok text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400">TikTok</p>
+                                <p class="font-semibold text-white">@satyabara</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-800/60 text-slate-200 text-xs font-mono border border-slate-700/50">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                                <i class="fa-brands fa-discord text-base"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-slate-400">Discord</p>
+                                <p class="font-semibold text-white">satyabara</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating AI Chat Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="toggleAIChat()" class="w-14 h-14 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white flex items-center justify-center shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-110 hover:shadow-[0_0_35px_rgba(6,182,212,0.9)] transition-all">
+            <i class="fa-solid fa-robot text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- AI Chat Window Drawer -->
+    <div id="ai-chat-modal" class="hidden fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] h-[500px] glass-card rounded-3xl border border-cyan-500/40 shadow-2xl z-50 flex flex-col overflow-hidden">
+        <!-- Chat Header -->
+        <div class="p-4 bg-slate-900/90 border-b border-slate-800 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-400 text-sm">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-white">SatyaAI Assistant</h4>
+                    <p class="text-[10px] text-cyan-400 font-mono">Tanya seputar Satya / TKJ / Touring</p>
+                </div>
+            </div>
+            <button onclick="toggleAIChat()" class="text-slate-400 hover:text-white p-1">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+        </div>
+
+        <!-- Chat Body Messages -->
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 custom-scrollbar text-xs">
+            <div class="flex gap-2">
+                <div class="w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 flex-shrink-0 flex items-center justify-center text-xs">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="bg-slate-800/80 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700/60 max-w-[85%] leading-relaxed">
+                    Halo! Saya asisten AI Satya. Silakan tanya apa saja seputar keahlian TKJ Satya, konfigurasi Mikrotik, atau pengalaman touring Vario 125 ke Dieng! 🚀
+                </div>
+            </div>
+        </div>
+
+        <!-- Preset Quick Question Chips -->
+        <div class="p-2 bg-slate-950/60 border-t border-slate-800 flex gap-1.5 overflow-x-auto custom-scrollbar text-[10px]">
+            <button onclick="sendQuickPrompt('Siapa Satya Bara Argayoen?')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700">Profil Satya</button>
+            <button onclick="sendQuickPrompt('Apa saja skill TKJ Satya?')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700">Skill TKJ</button>
+            <button onclick="sendQuickPrompt('Ceritakan pengalaman touring ke Dieng')" class="whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700">Touring Dieng</button>
+        </div>
+
+        <!-- Chat Input Form -->
+        <div class="p-3 bg-slate-900 border-t border-slate-800 flex gap-2">
+            <input type="text" id="chat-user-input" placeholder="Tulis pertanyaan..." onkeydown="if(event.key==='Enter') sendChatMessage()" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400">
+            <button onclick="sendChatMessage()" class="w-9 h-9 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold flex items-center justify-center transition-all">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+        </div>
+    </div>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-8">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <span class="font-mono font-bold text-white tracking-tighter">
+                    <span class="text-accent-cyan">&lt;</span>Satya Argayoen Bara<span class="text-accent-green">/&gt;</span>
+                </span>
+                <p class="text-slate-500 text-xs mt-1">© 2026 Satya Bara Argayoen • Siswa TKJ & Traveler.</p>
+            </div>
+            <div class="text-xs text-slate-500 font-mono">
+                TKJ Student Portfolio
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // --- Typing Animation Logic ---
+        const textArray = ["Siswa XII TKJ B", "MikroTik & Hardware Specialist", "Traveler & Backpacking", "Linux Server Enthusiast"];
+        const typingDelay = 90;
+        const erasingDelay = 40;
+        const newTextDelay = 1800;
+        let textArrayIndex = 0;
+        let charIndex = 0;
+        const typewriterElement = document.getElementById("typewriter");
+
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                typewriterElement.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                setTimeout(erase, newTextDelay);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typewriterElement.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } else {
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                setTimeout(type, typingDelay + 400);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if(textArray.length) setTimeout(type, newTextDelay);
+        });
+
+        // --- Mobile Menu Toggle ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
+
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            });
+        });
+
+        // --- Slider & Tab Navigation Logic for Projects ---
+        let currentProjectIndex = 0;
+        const totalProjects = 3;
+
+        function updateProjectSlide(index) {
+            currentProjectIndex = index;
+            for (let i = 0; i < totalProjects; i++) {
+                const slide = document.getElementById(`project-slide-${i}`);
+                const dot = document.getElementById(`dot-${i}`);
+                if (i === index) {
+                    slide.classList.remove('hidden');
+                    dot.className = "h-3 rounded-full bg-cyan-400 transition-all duration-300 shadow-[0_0_10px_rgba(6,182,212,0.8)] w-8";
+                } else {
+                    slide.classList.add('hidden');
+                    dot.className = "w-3 h-3 rounded-full bg-slate-700 hover:bg-slate-500 transition-all duration-300";
+                }
+            }
+        }
+
+        function nextProject() {
+            let newIndex = (currentProjectIndex + 1) % totalProjects;
+            updateProjectSlide(newIndex);
+        }
+
+        function prevProject() {
+            let newIndex = (currentProjectIndex - 1 + totalProjects) % totalProjects;
+            updateProjectSlide(newIndex);
+        }
+
+        function goToProject(index) {
+            updateProjectSlide(index);
+        }
+
+        function switchTab(category) {
+            const tabs = ['all', 'tkj', 'touring', 'server'];
+            tabs.forEach(tab => {
+                const tabBtn = document.getElementById(`tab-${tab}`);
+                if (tab === category) {
+                    tabBtn.className = "project-tab active px-5 py-2.5 rounded-xl text-xs md:text-sm font-medium font-mono transition-all duration-300 border border-cyan-400 bg-cyan-500/20 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.3)]";
+                } else {
+                    tabBtn.className = "project-tab px-5 py-2.5 rounded-xl text-xs md:text-sm font-medium font-mono transition-all duration-300 border border-slate-700 glass-card text-slate-400 hover:text-white hover:border-cyan-500/50";
+                }
+            });
+
+            if (category === 'tkj') goToProject(0);
+            else if (category === 'touring') goToProject(1);
+            else if (category === 'server') goToProject(2);
+            else goToProject(0);
+        }
     </script>
 </body>
 </html>
